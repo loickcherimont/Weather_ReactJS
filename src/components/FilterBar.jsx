@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import { fetchAPI, API_KEY } from "../assets/js/api.js";
-// import { Alert } from "./Alert.jsx";
+import React from "react";
+import { API_KEY, fetchAPI } from "../assets/js/api.js";
 
 export function FilterBar({city,setCity, setError,setData}) {
 
