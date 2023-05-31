@@ -1,5 +1,6 @@
 import React from "react";
-import { API_KEY, fetchAPI } from "../assets/js/api.js";
+import { fetchAPI } from "../assets/js/api.js";
+import { FilterBtn } from "./FilterBtn.jsx";
 
 export function FilterBar({city,setCity, setError,setData}) {
 
@@ -16,7 +17,8 @@ export function FilterBar({city,setCity, setError,setData}) {
         setError("");
         setCity(city);
 
-        fetchAPI(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`)
+        /** /!\ Delete API key before pushing /!\ */
+        fetchAPI(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=YOUR_API_KEY`)
             .then((d) => {
 
                 setData({
@@ -47,8 +49,9 @@ export function FilterBar({city,setCity, setError,setData}) {
                 value={city}
                 onChange={handleChange}
             />
-            {/** @todo - Replace S by an icon */}
-            <input type="submit" value="S" />
+            {/* * @todo - Replace S by an icon
+            <input type="submit" value="S" /> */}
+            <FilterBtn />
         </form>
     </>
 
