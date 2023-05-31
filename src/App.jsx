@@ -3,6 +3,7 @@ import './App.css';
 import { Header } from './components/Header';
 import { FilterBar } from './components/FilterBar';
 import { Alert } from './components/Alert';
+import { Infos } from './components/Infos';
 
 
 function App() {
@@ -12,21 +13,28 @@ function App() {
     icon: "", description: "", temperature: 0, name: "", country: ""
   });
 
-  // With Alert?
+
   const [error, setError] = useState("");
 
   const { icon, description, temperature, name, country } = data;
 
   return (
-    <>
+    <div className="bg-sky-500 border-2 border-black w-[300px] h-[450px]">
       {/* Header */}
       <Header
         title={"Weather App"}
         instructions={"Tap a city name and get its actual weather"}
+      />  
+
+      {/* WeatherInfos */}
+      <Infos
+        icon={icon} 
+        temperature={temperature} 
+        description={description}
+        name={name}
+        country={country}
       />
-      {/* Alert */}
-      <Alert>{error}</Alert>
-      {/** @todo - Rename the prop from FilterBar */}
+
       {/** Pass parent's setError to child FilterBar*/}
       <FilterBar 
         city={city}
@@ -35,14 +43,9 @@ function App() {
         setData={setData}
       />
 
-
-      {/* WeatherRender */}
-      {/* @todo - Create a component */}
-      {icon ? <img className="icon" src={icon} /> : null}
-      {temperature ? <div className="temperature">{temperature} °C</div> : null}
-      {description ? <div className="description">{description}</div> : null}
-      {name ? <div className="place">{name}, {country}</div> : null}
-    </>
+      {/* Alert */}
+      <Alert>{error}</Alert>
+    </div>
   )
 }
 
