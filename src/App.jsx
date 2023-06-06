@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import './App.css';
-import { Header } from './components/Header';
 import { FilterBar } from './components/FilterBar';
 import { Alert } from './components/Alert';
-import { Infos } from './components/Infos';
+import { Details } from './components/Details';
+import { Visual } from './components/Visual';
 
 
 function App() {
@@ -19,33 +19,31 @@ function App() {
   const { icon, description, temperature, name, country } = data;
 
   return (
-    <div className="bg-sky-500 border-2 border-black w-[300px] h-[450px]">
-      {/* Header */}
-      <Header
-        title={"Weather App"}
-        instructions={"Tap a city name and get its actual weather"}
-      />  
-
-      {/* WeatherInfos */}
-      <Infos
-        icon={icon} 
-        temperature={temperature} 
-        description={description}
-        name={name}
-        country={country}
-      />
+    <main className="app h-[480px] w-[300px] bg-sky-400 text-white flex flex-col shadow-md rounded-3xl">
+      {/* Alert */}
+      <Alert>{error}</Alert>
 
       {/** Pass parent's setError to child FilterBar*/}
-      <FilterBar 
+
+      <FilterBar
         city={city}
         setCity={setCity}
         setError={setError}
         setData={setData}
       />
 
-      {/* Alert */}
-      <Alert>{error}</Alert>
-    </div>
+      <Visual
+        icon={icon}
+        temperature={temperature}
+      />
+
+      <Details
+        description={description}
+        city={name}
+        country={country}
+      />
+    </main>
+
   )
 }
 
