@@ -3,20 +3,22 @@ import { FaSearch } from "react-icons/fa";
 
 export function FilterBar({ city, setCity, setError, setData }) {
 
-    /** Handlers */
+    // ** Handlers **
     const handleSubmit = (e) => {
 
         e.preventDefault();
 
-        /** Display error message if user didn't fill any city name */
+        // Display error message if user didn't fill any city
         if (!city) {
             setError("To use correctly the filter, fill a city please!");
             return;
         }
+
+        // Else clear error message
         setError("");
         setCity(city);
 
-        /** /!\ Delete API key before pushing /!\ */
+        // INDICATION : /!\ Delete API key before pushing /!\
         fetchAPI(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=YOUR_API_KEY`)
             .then((d) => {
 
@@ -24,7 +26,7 @@ export function FilterBar({ city, setCity, setError, setData }) {
                     icon: `https://openweathermap.org/img/wn/${d["weather"][0]["icon"]}@4x.png`,
                     description: d["weather"][0]["description"],
                     temperature: Math.ceil(d.main.temp),
-                    name: d["name"],
+                    name: d["name"], // name for city name to avoid confusion by React
                     country: d["sys"]["country"]
                 });
 
@@ -35,24 +37,24 @@ export function FilterBar({ city, setCity, setError, setData }) {
             });
     }
 
-    /** To update a state */
+    // To update input state
     const handleChange = (e) => {
         setCity(e.target.value);
     }
 
-    /** Render */
+    // ** Render **
     return <form method="GET" onSubmit={handleSubmit} className="header m-2 shrink">
         <div className="form__section flex justify-center items-center p-2">
             <label htmlFor="filterBar">
-                {/* Get city weather */}
+
                 <input
                     type="search"
                     name="filter_bar"
                     id="filterBar"
-                    placeholder="London, ..."
+                    placeholder="Search for a city"
                     value={city}
                     onChange={handleChange}
-                    className="mx-2 rounded-full bg-slate-100/50 p-2 text-sm italic w-60"
+                    className="mx-2 rounded-full bg-slate-100/50 p-2 text-sm italic w-60 placeholder:text-slate-700"
                     title="Get city weather"
                 />
             </label>
