@@ -1,5 +1,3 @@
-import React from "react";
-
 export function Header({title}) {
 
     return <div className="header">
