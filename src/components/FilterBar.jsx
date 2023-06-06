@@ -2,7 +2,7 @@ import React from "react";
 import { fetchAPI } from "../assets/js/api.js";
 import { FilterBtn } from "./FilterBtn.jsx";
 
-export function FilterBar({city,setCity, setError,setData}) {
+export function FilterBar({ city, setCity, setError, setData }) {
 
     /** Handlers */
     const handleSubmit = (e) => {
@@ -38,21 +38,18 @@ export function FilterBar({city,setCity, setError,setData}) {
     const handleChange = (e) => {
         setCity(e.target.value);
     }
-    
-    /** Render */
-    return <>
-        <form action="" method="GET" onSubmit={handleSubmit}>
-            <input
-                type="search"
-                name="filter_bar"
-                placeholder="London, ..."
-                value={city}
-                onChange={handleChange}
-            />
-            {/* * @todo - Replace S by an icon
-            <input type="submit" value="S" /> */}
-            <FilterBtn />
-        </form>
-    </>
 
+    /** Render */
+    return <form method="GET" onSubmit={handleSubmit} className="header m-2 shrink">
+        <input
+            type="search"
+            name="filter_bar"
+            placeholder="London, ..."
+            value={city}
+            onChange={handleChange}
+            className="m-2 rounded-full bg-slate-100/25 p-2 text-sm italic"
+        />
+        <FilterBtn />
+        <div className="text-sm text-white">Today</div>
+    </form>
 }
