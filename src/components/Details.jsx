@@ -1,25 +1,18 @@
-import React from "react";
+import { DetailItem } from "./DetailItem";
 
-export function Details({ description, city, country }) {
-    return <footer className="bg-white text-slate-700 border flex flex-col grow rounded-b-3xl">
-        <div>
+export function Details({ error, description, city, country }) {
+    return <footer className="bg-white text-slate-700 border flex flex-col grow rounded-b-3xl p-2">
+        <section>
+            <p className="text-red-500 errorMessage">{error}</p>
+        </section>
+        <section>
             <p className="font-bold p-1">Weather now</p>
-        </div>
+        </section>
 
-        <div className="flex justify-around">
-            <div>
-                <div className="text-slate-400 font-thin">City</div>
-                {city ? <div className="font-semibold">{city}</div> : null}
-            </div>
-            <div>
-                <div className="text-slate-400 font-thin">Conditions</div>
-                {description ? <div className="font-semibold">{description}</div> : null}
-
-            </div>
-            <div>
-                <div className="text-slate-400 font-thin">Country</div>
-                {country ? <div className="font-semibold">{country}</div> : null}
-            </div>
-        </div>
+        <ul className="flex justify-around">
+            <DetailItem option={"City"} data={city} />
+            <DetailItem option={"Conditions"} data={description} />
+            <DetailItem option={"Country"} data={country} />
+        </ul>
     </footer>
 }
