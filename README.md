@@ -1,14 +1,38 @@
-# TODO
-- ~~Error handling: When user submits a null query (05-18)~~
-- Code structure (/Components, /utils, ...) (05-21)
-- Clean code (comment/factor) (05-21)
-- Style with Tailwindcss (05-22)
-- Write the final `README.md` (05-22/23)
+# WeatherApp_ReactJS
 
+![Preview](/github/preview.png)
+Weather app upkept using the famous front-end Javascript library: ReactJS.
 
-## Features
+## :wrench: Tools
+- ReactJS 18.2.0 (From Node.js)
+- Tailwindcss 3.3.2
+- [Open Weather](https://openweathermap.org/)
+
+## :warning: Prerequisites
+You need an API key from [Open Weather Map](https://openweathermap.org/) website.
+
+## :inbox_tray: Setup for contributions
+1. Download this project
+2. Unzip the project, open it with a terminal
+```bash
+cd Weather_ReactJS-main
+```
+3. Launch 
+```bash
+npm run dev
+```
+4. Here you are on the main page
+
+![Main Page](/github/mainpage.png)
+
+## :rocket: Features
 - Redirect user on a temp page when server is not found
 - Check if city is an existing one
-- Secure the app using Back end code
+- *BACK-END: Secure the app using*
+
+## :key: License
+Made by Loick Cherimont
+Under MIT License
+
 
 
