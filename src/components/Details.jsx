@@ -1,7 +1,8 @@
 import { DetailItem } from "./DetailItem";
 
 export function Details({ error, description, city, country }) {
-    return <section className="bg-white text-slate-700 border flex flex-col grow rounded-b-3xl p-2">
+
+    return <section className="bg-white text-slate-700 flex flex-col grow rounded-b-3xl p-2">
 
         {/* Error related to wrong usage of FilterBar */}
         <div>
@@ -12,10 +13,11 @@ export function Details({ error, description, city, country }) {
         </div>
 
         {/* Main details about selected city */}
-        <ul className="flex justify-around">
+        <ul className="flex justify-around gap-3">
             <DetailItem parameter={"City"} data={city} />
             <DetailItem parameter={"Conditions"} data={description} />
             <DetailItem parameter={"Country"} data={country} />
         </ul>
     </section>
 }
+
