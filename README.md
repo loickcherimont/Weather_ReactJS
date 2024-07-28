@@ -65,7 +65,7 @@ You are going to get weather informations about the target place.
 
 ![Saint-Nazaire's weather (FRANCE)](/github/stnazaire_weather.png)
 
-> :information_source For not valid entry, there is an error message!
+> :information_source: For not valid entry, there is an error message!
 
 
 ## :rocket: Features
