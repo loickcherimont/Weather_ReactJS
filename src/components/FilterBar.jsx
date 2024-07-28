@@ -3,6 +3,21 @@ import { FaSearch } from "react-icons/fa";
 
 export function FilterBar({ city, setCity, setError, setData }) {
 
+    // Parameter : name - string
+    // Replace "Arrondissement de [NAME]" with "[NAME]"
+    const shorten = (name) => {
+
+        const aName = name.split(" ");
+
+        if(aName.includes("Arrondissement") && aName.includes("de"))
+            return aName.pop();
+
+        return aName.join(" ");
+    }
+
+    // INDICATION : /!\ Delete API key before pushing /!\
+    const YOUR_API_KEY = 'ENTER_YOUR_API_KEY_HERE';
+
     // ** Handlers **
     const handleSubmit = (e) => {
 
@@ -19,16 +34,17 @@ export function FilterBar({ city, setCity, setError, setData }) {
         setCity(city);
 
         // INDICATION : /!\ Delete API key before pushing /!\
-        fetchAPI(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=YOUR_API_KEY`)
+        fetchAPI(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${YOUR_API_KEY}`)
             .then((d) => {
 
                 setData({
                     icon: `https://openweathermap.org/img/wn/${d["weather"][0]["icon"]}@4x.png`,
                     description: d["weather"][0]["description"],
                     temperature: Math.ceil(d.main.temp),
-                    name: d["name"], // name for city name to avoid confusion by React
+                    name: shorten(d["name"]), // name for city name to avoid confusion by React
                     country: d["sys"]["country"]
                 });
+                console.log(d["name"].split(" ").slice(2).join());
 
                 setCity("");
             }, () => { throw new Error("Server Not Found!") })
@@ -54,13 +70,13 @@ export function FilterBar({ city, setCity, setError, setData }) {
                     placeholder="Search for a city"
                     value={city}
                     onChange={handleChange}
-                    className="mx-2 rounded-full bg-slate-100/50 p-2 text-sm italic w-60 placeholder:text-slate-700"
+                    className="mx-2 rounded-full bg-slate-100/50 p-2 text-sm italic w-60 placeholder:text-slate-700 text-slate-700"
                     title="Get city weather"
                 />
             </label>
 
             <button type="submit" className="rounded-full p-3">
-                <FaSearch style={{color: "white"}}/>
+                <FaSearch style={{ color: "white" }} />
             </button>
         </div>
 
